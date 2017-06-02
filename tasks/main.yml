@@ -1,0 +1,20 @@
+---
+# tasks file for ansible-role-unattended-upgrades
+- name: "Install unattended-upgrades"
+  apt:
+    name: unattended-upgrades
+- name: "Enable Unattended-Upgrade::Mail"
+  lineinfile:
+    path: "/etc/apt/apt.conf.d/50unattended-upgrades"
+    regexp: '^.*Unattended-Upgrade::Mail ".*";$'
+    line: 'Unattended-Upgrade::Mail "{{ unattended_upgrades_mail_to }}";'
+- name: "Unattended-Upgrade::Remove-Unused-Dependencies"
+  lineinfile:
+    path: "/etc/apt/apt.conf.d/50unattended-upgrades"
+    regexp: '^.*Unattended-Upgrade::Remove-Unused-Dependencies ".*";$'
+    line: 'Unattended-Upgrade::Remove-Unused-Dependencies "{{ unattended_upgrades_remove_unused_dependencies }}";'
+- name: "Unattended-Upgrade::Automatic-Reboot"
+  lineinfile:
+    path: "/etc/apt/apt.conf.d/50unattended-upgrades"
+    regexp: '^.*Unattended-Upgrade::Automatic-Reboot ".*";$'
+    line: 'Unattended-Upgrade::Automatic-Reboot "{{ unattended_upgrades_automatic_reboot }}";'

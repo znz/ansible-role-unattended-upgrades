@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: yes
+  roles:
+  - role: znz.unattended-upgrades
+    unattended_upgrades_automatic_reboot: "false"
