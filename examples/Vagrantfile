@@ -12,10 +12,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.define 'jessie64', primary: true do |vm|
+  config.vm.define 'jessie64', autostart: false do |vm|
     vm.vm.box = 'debian/contrib-jessie64'
     if Vagrant.has_plugin?('vagrant-cachier')
       vm.cache.scope = :box
+    end
+  end
+
+  config.vm.define 'stretch64', primary: true do |vm|
+    vm.vm.box = 'bento/debian-9.3'
+    if Vagrant.has_plugin?('vagrant-cachier')
+      vm.cache.scope = :box
+      vm.cache.synced_folder_opts = {
+        owner: '_apt',
+        group: '_apt',
+        mount_options: ['dmode=777', 'fmode=666']
+      }
     end
   end
 
