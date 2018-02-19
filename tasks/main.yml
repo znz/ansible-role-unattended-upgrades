@@ -18,3 +18,9 @@
     path: "/etc/apt/apt.conf.d/50unattended-upgrades"
     regexp: '^.*Unattended-Upgrade::Automatic-Reboot ".*";$'
     line: 'Unattended-Upgrade::Automatic-Reboot "{{ unattended_upgrades_automatic_reboot }}";'
+- name: "Unattended-Upgrade::Automatic-Reboot-Time"
+  lineinfile:
+    path: "/etc/apt/apt.conf.d/50unattended-upgrades"
+    regexp: '^.*Unattended-Upgrade::Automatic-Reboot-Time ".*";$'
+    line: 'Unattended-Upgrade::Automatic-Reboot-Time "{{ unattended_upgrades_automatic_reboot_time }}";'
+  when: unattended_upgrades_automatic_reboot_time is defined

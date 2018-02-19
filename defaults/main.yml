@@ -3,3 +3,4 @@
 unattended_upgrades_mail_to: "root"
 unattended_upgrades_remove_unused_dependencies: "true"
 unattended_upgrades_automatic_reboot: "true"
+#unattended_upgrades_automatic_reboot_time: "02:00"
